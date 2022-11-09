@@ -1,0 +1,49 @@
+data:
+  Location{world=CraftWorld{name=world},x=111:
+    0,y=63:
+      0,z=168:
+        0,pitch=0:
+          0,yaw=0:
+            0}: !!org.bukkit.craftbukkit.v1_19_R1.inventory.CraftInventoryCustom
+              contents:
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+              maxStackSize: 64
+              storageContents:
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - null
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+                - ==: org.bukkit.inventory.ItemStack
+                  v: 3120
+                  type: BOOK
+
