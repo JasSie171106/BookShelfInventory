@@ -1,0 +1,4 @@
+name: BookShelfInventory
+version: 0.1
+author: Jasper Sieben
+main: de.jasper.bsi.BSIMain

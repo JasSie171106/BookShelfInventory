@@ -1,6 +1,6 @@
-package de.jasper.jb;
+package de.jasper.bsi;
 
-import de.jasper.jb.events.JBEvents;
+import de.jasper.bsi.events.BSIEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,36 +12,37 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-public class JoelBooksMain extends JavaPlugin {
+
+public class BSIMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
         getLogger().info("Plugin Loaded!");
-        Bukkit.getServer().getPluginManager().registerEvents(new JBEvents(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BSIEvents(), this);
     }
 
     @Override
     public void onDisable() {
         getLogger().info("Plugin Disabled!");
-        if (!JBEvents.bookmap.isEmpty()) {
-            JoelBooksMain.saveInv();
+        if (!BSIEvents.bookmap.isEmpty()) {
+            BSIMain.saveInv();
         }
     }
 
     public static void saveInv() {
-        JBEvents.file.delete();
-        JBEvents.file = new File("plugins/bookshelfinv", "items.yml");
-        JBEvents.items = YamlConfiguration.loadConfiguration(JBEvents.file);
-        JBEvents.bookmap.forEach((location, inventory) -> {
+        BSIEvents.file.delete();
+        BSIEvents.file = new File("plugins/bookshelfinv", "items.yml");
+        BSIEvents.items = YamlConfiguration.loadConfiguration(BSIEvents.file);
+        BSIEvents.bookmap.forEach((location, inventory) -> {
 
             List<ItemStack> items = new ArrayList<>();
             Collections.addAll(items, inventory.getContents());
 
-            JBEvents.items.set(String.valueOf(location), items);
+            BSIEvents.items.set(String.valueOf(location), items);
         });
 
         try {
-            JBEvents.items.save(JBEvents.file);
+            BSIEvents.items.save(BSIEvents.file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,12 +51,12 @@ public class JoelBooksMain extends JavaPlugin {
     public static Inventory getInv(Location location) {
         Inventory inventory = Bukkit.createInventory(null, 9, "§cBookshelf §fInventory");
 
-        if (JBEvents.bookmap.containsKey(location))
-            return JBEvents.bookmap.get(location);
+        if (BSIEvents.bookmap.containsKey(location))
+            return BSIEvents.bookmap.get(location);
 
-        if (JBEvents.items.contains(String.valueOf(location))) {
+        if (BSIEvents.items.contains(String.valueOf(location))) {
 
-            List<?> itemlist = JBEvents.items.getList(String.valueOf(location));
+            List<?> itemlist = BSIEvents.items.getList(String.valueOf(location));
 
             for (int i = 0; i < 9; i++) {
                 assert itemlist != null;
@@ -63,7 +64,7 @@ public class JoelBooksMain extends JavaPlugin {
             }
             System.out.println(inventory.toString());
 
-            JBEvents.bookmap.put(location, inventory);
+            BSIEvents.bookmap.put(location, inventory);
 
         } else {
             inventory.setItem(0, new ItemStack(Material.BOOK));
@@ -71,7 +72,7 @@ public class JoelBooksMain extends JavaPlugin {
             inventory.setItem(5, new ItemStack(Material.BOOK));
             inventory.setItem(7, new ItemStack(Material.BOOK));
             inventory.setItem(8, new ItemStack(Material.BOOK));
-            JBEvents.bookmap.put(location, inventory);
+            BSIEvents.bookmap.put(location, inventory);
         }
 
         return inventory;
