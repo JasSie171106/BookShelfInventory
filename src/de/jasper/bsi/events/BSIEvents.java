@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class BSIEvents implements Listener {
-    public static File file = new File("plugins/bookshelfinv", "items.yml");
+    public static File file = new File("plugins/bsi", "inventories.yml");
     public static YamlConfiguration items = YamlConfiguration.loadConfiguration(file);
-    public static final HashMap<Location, Inventory> bookmap = new HashMap<>();
+    public static final HashMap<Location, Inventory> bookMap = new HashMap<>();
 
     @EventHandler
     public void onClickBookshelf(PlayerInteractEvent e) {

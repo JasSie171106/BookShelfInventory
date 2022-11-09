@@ -24,16 +24,16 @@ public class BSIMain extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Plugin Disabled!");
-        if (!BSIEvents.bookmap.isEmpty()) {
+        if (!BSIEvents.bookMap.isEmpty()) {
             BSIMain.saveInv();
         }
     }
 
     public static void saveInv() {
         BSIEvents.file.delete();
-        BSIEvents.file = new File("plugins/bookshelfinv", "items.yml");
+        BSIEvents.file = new File("plugins/bsi", "inventories.yml");
         BSIEvents.items = YamlConfiguration.loadConfiguration(BSIEvents.file);
-        BSIEvents.bookmap.forEach((location, inventory) -> {
+        BSIEvents.bookMap.forEach((location, inventory) -> {
 
             List<ItemStack> items = new ArrayList<>();
             Collections.addAll(items, inventory.getContents());
@@ -51,8 +51,8 @@ public class BSIMain extends JavaPlugin {
     public static Inventory getInv(Location location) {
         Inventory inventory = Bukkit.createInventory(null, 9, "§cBookshelf §fInventory");
 
-        if (BSIEvents.bookmap.containsKey(location))
-            return BSIEvents.bookmap.get(location);
+        if (BSIEvents.bookMap.containsKey(location))
+            return BSIEvents.bookMap.get(location);
 
         if (BSIEvents.items.contains(String.valueOf(location))) {
 
@@ -64,7 +64,7 @@ public class BSIMain extends JavaPlugin {
             }
             System.out.println(inventory.toString());
 
-            BSIEvents.bookmap.put(location, inventory);
+            BSIEvents.bookMap.put(location, inventory);
 
         } else {
             inventory.setItem(0, new ItemStack(Material.BOOK));
@@ -72,7 +72,7 @@ public class BSIMain extends JavaPlugin {
             inventory.setItem(5, new ItemStack(Material.BOOK));
             inventory.setItem(7, new ItemStack(Material.BOOK));
             inventory.setItem(8, new ItemStack(Material.BOOK));
-            BSIEvents.bookmap.put(location, inventory);
+            BSIEvents.bookMap.put(location, inventory);
         }
 
         return inventory;
