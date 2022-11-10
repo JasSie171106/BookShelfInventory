@@ -49,6 +49,15 @@ public class BSIEvents implements Listener {
     public static void onBreak(BlockBreakEvent e){
         if(bookMap.containsKey(e.getBlock().getLocation())){
             Inventory mapinv = bookMap.get(e.getBlock().getLocation());
+
+
+            for(int i = 0; i < 9; i++){
+                if(mapinv.getItem(i) != null && mapinv.getItem(i).getType() != Material.BOOK){
+                    e.getPlayer().getInventory().addItem(mapinv.getItem(i));
+                }
+            }
+
+
             mapinv.setItem(0, new ItemStack(Material.BOOK));
             mapinv.setItem(1, null);
             mapinv.setItem(2, null);
@@ -59,12 +68,6 @@ public class BSIEvents implements Listener {
             mapinv.setItem(7, new ItemStack(Material.BOOK));
             mapinv.setItem(8, new ItemStack(Material.BOOK));
             BSIEvents.bookMap.put(e.getBlock().getLocation(), mapinv);
-
-            for(int i = 0; i < 9; i++){
-                if(mapinv.getItem(i) != null){
-                    e.getPlayer().getInventory().addItem(mapinv.getItem(i));
-                }
-            }
         }
     }
 
