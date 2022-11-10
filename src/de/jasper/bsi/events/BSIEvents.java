@@ -9,14 +9,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class BSIEvents implements Listener {
@@ -41,6 +44,27 @@ public class BSIEvents implements Listener {
     public void openInv(Player p, Location loc) {
         p.openInventory(Objects.requireNonNull(BSIMain.getInv(loc)));
     }
+
+   @EventHandler
+   public static void onBreak(BlockBreakEvent e){
+        Block b = e.getBlock();
+        Player p = e.getPlayer();
+        Location blockLoc = b.getLocation();
+        Inventory inventory = BSIMain.getInv(blockLoc);
+
+        if(b.getType() == Material.BOOKSHELF) {
+            inventory.setItem(0, new ItemStack(Material.BOOK));
+            inventory.setItem(1, null);
+            inventory.setItem(2, null);
+            inventory.setItem(3, new ItemStack(Material.BOOK));
+            inventory.setItem(4, null);
+            inventory.setItem(5, new ItemStack(Material.BOOK));
+            inventory.setItem(6, null);
+            inventory.setItem(7, new ItemStack(Material.BOOK));
+            inventory.setItem(8, new ItemStack(Material.BOOK));
+            BSIEvents.bookMap.put(blockLoc, inventory);
+        }
+   }
 
     @EventHandler
     public void cancelPlace(BlockPlaceEvent e) {
