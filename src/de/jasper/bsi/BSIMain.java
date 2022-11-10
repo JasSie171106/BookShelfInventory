@@ -67,15 +67,7 @@ public class BSIMain extends JavaPlugin {
             BSIEvents.bookMap.put(location, inventory);
 
         } else {
-            inventory.setItem(0, new ItemStack(Material.BOOK));
-            inventory.setItem(1, null);
-            inventory.setItem(2, null);
-            inventory.setItem(3, new ItemStack(Material.BOOK));
-            inventory.setItem(4, null);
-            inventory.setItem(5, new ItemStack(Material.BOOK));
-            inventory.setItem(6, null);
-            inventory.setItem(7, new ItemStack(Material.BOOK));
-            inventory.setItem(8, new ItemStack(Material.BOOK));
+            BSIEvents.standartInv(inventory);
             BSIEvents.bookMap.put(location, inventory);
         }
 
