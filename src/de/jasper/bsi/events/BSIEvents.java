@@ -45,26 +45,28 @@ public class BSIEvents implements Listener {
         p.openInventory(Objects.requireNonNull(BSIMain.getInv(loc)));
     }
 
-   @EventHandler
-   public static void onBreak(BlockBreakEvent e){
-        Block b = e.getBlock();
-        Player p = e.getPlayer();
-        Location blockLoc = b.getLocation();
-        Inventory inventory = BSIMain.getInv(blockLoc);
+    @EventHandler
+    public static void onBreak(BlockBreakEvent e){
+        if(bookMap.containsKey(e.getBlock().getLocation())){
+            Inventory mapinv = bookMap.get(e.getBlock().getLocation());
+            mapinv.setItem(0, new ItemStack(Material.BOOK));
+            mapinv.setItem(1, null);
+            mapinv.setItem(2, null);
+            mapinv.setItem(3, new ItemStack(Material.BOOK));
+            mapinv.setItem(4, null);
+            mapinv.setItem(5, new ItemStack(Material.BOOK));
+            mapinv.setItem(6, null);
+            mapinv.setItem(7, new ItemStack(Material.BOOK));
+            mapinv.setItem(8, new ItemStack(Material.BOOK));
+            BSIEvents.bookMap.put(e.getBlock().getLocation(), mapinv);
 
-        if(b.getType() == Material.BOOKSHELF) {
-            inventory.setItem(0, new ItemStack(Material.BOOK));
-            inventory.setItem(1, null);
-            inventory.setItem(2, null);
-            inventory.setItem(3, new ItemStack(Material.BOOK));
-            inventory.setItem(4, null);
-            inventory.setItem(5, new ItemStack(Material.BOOK));
-            inventory.setItem(6, null);
-            inventory.setItem(7, new ItemStack(Material.BOOK));
-            inventory.setItem(8, new ItemStack(Material.BOOK));
-            BSIEvents.bookMap.put(blockLoc, inventory);
+            for(int i = 0; i < 0; i++){
+                if(mapinv.getItem(i) != null){
+                    e.getPlayer().getInventory().addItem(mapinv.getItem(i));
+                }
+            }
         }
-   }
+    }
 
     @EventHandler
     public void cancelPlace(BlockPlaceEvent e) {

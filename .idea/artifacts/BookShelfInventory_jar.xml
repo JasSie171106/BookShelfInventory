@@ -1,9 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="BookShelfInventory:jar">
-    <output-path>R:/Server/plugins</output-path>
-    <root id="archive" name="JoelBookshelf.jar">
+    <output-path>E:/Server/plugins</output-path>
+    <root id="archive" name="BookShelfInventory.jar">
       <element id="module-output" name="BookShelfInventory" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../spigot-api-1.19.2-R0.1-20221106.071812-39.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="E:/spigot-api-1.19.2-R0.1-20221106.071812-39.jar" path-in-jar="/" />
       <element id="file-copy" path="$PROJECT_DIR$/src/de/jasper/bsi/plugin.yml" />
     </root>
   </artifact>
