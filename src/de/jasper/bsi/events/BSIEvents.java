@@ -60,7 +60,7 @@ public class BSIEvents implements Listener {
             mapinv.setItem(8, new ItemStack(Material.BOOK));
             BSIEvents.bookMap.put(e.getBlock().getLocation(), mapinv);
 
-            for(int i = 0; i < 0; i++){
+            for(int i = 0; i < 9; i++){
                 if(mapinv.getItem(i) != null){
                     e.getPlayer().getInventory().addItem(mapinv.getItem(i));
                 }
